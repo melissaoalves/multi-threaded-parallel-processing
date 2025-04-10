@@ -12,7 +12,7 @@ public class MestreServer {
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
         server.createContext("/processar", new ProcessarHandler());
-        server.setExecutor(Executors.newFixedThreadPool(4)); // Executor para lidar com threads
+        server.setExecutor(Executors.newFixedThreadPool(4));
         System.out.println("Servidor Mestre rodando na porta 8080");
         server.start();
     }
@@ -24,7 +24,6 @@ public class MestreServer {
                 return;
             }
 
-            // Lê o corpo da requisição
             InputStream is = exchange.getRequestBody();
             StringBuilder sb = new StringBuilder();
             int i;
@@ -33,7 +32,6 @@ public class MestreServer {
             }
             String texto = sb.toString();
 
-            // Envia texto aos escravos em paralelo
             ExecutorService executor = Executors.newFixedThreadPool(2);
             Future<String> letrasFuture = executor.submit(() -> enviarParaEscravo("http://escravo1:8081/letras", texto));
             Future<String> numerosFuture = executor.submit(() -> enviarParaEscravo("http://escravo2:8082/numeros", texto));
