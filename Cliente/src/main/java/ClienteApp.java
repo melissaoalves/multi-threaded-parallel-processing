@@ -60,7 +60,7 @@ public class ClienteApp {
 
     private static void sendTextToServer(String texto) {
         try {
-            URL url = new URL("http://10.180.44.117:8080/processar");
+            URL url = new URL("http://192.168.0.101:8080/processar");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
