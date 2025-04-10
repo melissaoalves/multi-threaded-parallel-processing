@@ -10,7 +10,7 @@ public class ClienteApp {
     private static JTextField resultField;
     
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Distributed System Client");
+        JFrame frame = new JFrame("Client");
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -60,7 +60,7 @@ public class ClienteApp {
 
     private static void sendTextToServer(String texto) {
         try {
-            URL url = new URL("http://localhost:8080/processar");
+            URL url = new URL("http://10.180.44.117:8080/processar");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
