@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mestre:
+    build: ./Mestre
+    ports:
+      - "8080:8080"
+    depends_on:
+      - escravo1
+      - escravo2
+
+  escravo1:
+    build: ./Escravo1
+    ports:
+      - "8081:8081"
+
+  escravo2:
+    build: ./Escravo2
+    ports:
+      - "8082:8082"
